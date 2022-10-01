@@ -1,4 +1,11 @@
 # Data Structures
-Implementations of different data structures in Java
+Implementations of different data structures in Java, with OOP principles applied
+
 Currently implemented:
-Linked List - 🟨
+| Data Structure | Status |
+| --- | --- |
+| Linked List | 🟨 |
+| Stack       | 🟥 |
+| Queue       | 🟥 |
+
+🟩 Done - 🟨 In Progress - 🟥 Didn't Start Yet
