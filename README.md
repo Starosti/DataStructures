@@ -4,7 +4,7 @@ Implementations of different data structures in Java, with OOP principles applie
 Currently implemented:
 | Data Structure | Status |
 | --- | --- |
-| Linked List | 🟨 |
+| Linked List | 🟩 |
 | Stack       | 🟥 |
 | Queue       | 🟥 |
 

@@ -2,13 +2,13 @@ package com.starosti.datastructures.linkedlist.singly;
 
 import com.starosti.datastructures.exceptions.linkedlist.NullNodeException;
 import com.starosti.datastructures.linkedlist.LinkedList;
+import com.starosti.datastructures.linkedlist.LinkedListIterator;
 import com.starosti.datastructures.linkedlist.Node;
 
+import java.util.Iterator;
 import java.util.Optional;
 
 public class SinglyLinkedList<T> implements LinkedList<T, Node<T>> {
-
-    //TODO: implement Iterable
 
     private Node<T> head;
     private int length = 0;
@@ -36,10 +36,12 @@ public class SinglyLinkedList<T> implements LinkedList<T, Node<T>> {
         return currNode;
     }
 
+    @Override
     public T findDataByIndex(int index){
         return findNodeByIndex(index).getData();
     }
 
+    @Override
     public Optional<Node<T>> findNodeByData(T data){
         // Duplicated code, but this runs faster so until I find a more elegant solution, I'll keep it
         Node<T> currNode = this.head;
@@ -50,6 +52,7 @@ public class SinglyLinkedList<T> implements LinkedList<T, Node<T>> {
         return Optional.empty();
     }
 
+    @Override
     public Optional<Integer> findIndexByData(T data){
         // Duplicated code, but this runs faster so until I find a more elegant solution, I'll keep it
         Node<T> currNode = this.head;
@@ -60,6 +63,7 @@ public class SinglyLinkedList<T> implements LinkedList<T, Node<T>> {
         return Optional.empty();
     }
 
+    @Override
     public void insertDataInIndex(T data, int index){
         insertNodeInIndex(new Node<>(data),index);
     }
@@ -84,6 +88,7 @@ public class SinglyLinkedList<T> implements LinkedList<T, Node<T>> {
         replaceNodeInIndex(new Node<>(data),index);
     }
 
+    @Override
     public void replaceNodeInIndex(Node<T> node, int index){
         if (node == null) throw new NullNodeException("Null node while trying to replace singly linked list node");
         if (index == 0){
@@ -108,6 +113,16 @@ public class SinglyLinkedList<T> implements LinkedList<T, Node<T>> {
         this.length--;
     }
 
+    @Override
+    public int getLength() {
+        return length;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListIterator<>(this);
+    }
+
     public Node<T> getHead() {
         return this.head;
     }
@@ -123,8 +138,4 @@ public class SinglyLinkedList<T> implements LinkedList<T, Node<T>> {
         }
     }
 
-    @Override
-    public int getLength() {
-        return length;
-    }
 }

@@ -160,4 +160,12 @@ class DoublyLinkedListTest {
     void getLength() {
         assertEquals(integers.length,testList.getLength());
     }
+
+    @Test
+    void iterator() {
+        int index = 0;
+        for(Integer i : testList){
+            assertEquals(integers[index++],i);
+        }
+    }
 }

@@ -2,12 +2,13 @@ package com.starosti.datastructures.linkedlist.doubly;
 
 import com.starosti.datastructures.exceptions.linkedlist.NullNodeException;
 import com.starosti.datastructures.linkedlist.LinkedList;
+import com.starosti.datastructures.linkedlist.LinkedListIterator;
 
+import java.util.Iterator;
 import java.util.Optional;
 
 public class DoublyLinkedList<T> implements LinkedList<T, DoublyLinkedNode<T>> {
 
-    //TODO: implement Iterable
     private DoublyLinkedNode<T> firstNode;
     private DoublyLinkedNode<T> lastNode;
     private int length = 0;
@@ -138,6 +139,17 @@ public class DoublyLinkedList<T> implements LinkedList<T, DoublyLinkedNode<T>> {
         else replacedNode.getNextNode().setPreviousNode(node); // 0=1=0
     }
 
+    @Override
+    public int getLength() {
+        return length;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListIterator<>(this);
+    }
+
+
     public void setFirstNode(DoublyLinkedNode<T> firstNode) {
         if (firstNode == null) throw new NullNodeException("Null first node in doubly linked list");
         this.firstNode = firstNode;
@@ -170,9 +182,4 @@ public class DoublyLinkedList<T> implements LinkedList<T, DoublyLinkedNode<T>> {
         return lastNode;
     }
 
-
-    @Override
-    public int getLength() {
-        return length;
-    }
 }

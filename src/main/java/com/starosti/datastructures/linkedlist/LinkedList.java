@@ -2,7 +2,7 @@ package com.starosti.datastructures.linkedlist;
 
 import java.util.Optional;
 
-public interface LinkedList<T,N extends Node<T>> {
+public interface LinkedList<T,N extends Node<T>> extends Iterable<T> {
 
     int getLength();
 
