@@ -42,25 +42,38 @@ public class SinglyLinkedList<T> implements LinkedList<T, Node<T>> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Optional<Node<T>> findNodeByData(T data){
-        // Duplicated code, but this runs faster so until I find a more elegant solution, I'll keep it
-        Node<T> currNode = this.head;
-        for(int i = 0; i< this.length; i++){
-            if (currNode.getData().equals(data)) return Optional.of(currNode);
-            currNode = currNode.getNextNode();
-        }
-        return Optional.empty();
+        return (Optional<Node<T>>) findByData(data,this.head.getClass());
     }
 
     @Override
     public Optional<Integer> findIndexByData(T data){
-        // Duplicated code, but this runs faster so until I find a more elegant solution, I'll keep it
+        return findByData(data,Integer.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    private <N> Optional<N> findByData(T data, Class<N> clazz){
+        // not a very elegant solution, but whatever
+        Optional<N> optional = Optional.empty();
         Node<T> currNode = this.head;
+        int index = -1;
         for(int i = 0; i< this.length; i++){
-            if (currNode.getData().equals(data)) return Optional.of(i);
+            if (currNode.getData().equals(data)) {
+                index = i;
+                break;
+            }
             currNode = currNode.getNextNode();
         }
-        return Optional.empty();
+
+        if (clazz == Integer.class){
+            if (index != -1) optional = (Optional<N>) Optional.of(index);
+        }
+
+        else {
+            if (currNode != null) optional = (Optional<N>) Optional.of(currNode);
+        }
+        return optional;
     }
 
     @Override
