@@ -33,9 +33,19 @@ public class DoublyLinkedList<T> implements LinkedList<T, DoublyLinkedNode<T>> {
     @Override
     public DoublyLinkedNode<T> findNodeByIndex(int index){
         if (index >= length || index < 0) throw new IndexOutOfBoundsException();
-        DoublyLinkedNode<T> currNode = this.firstNode;
-        for(int i = 0; i< index; i++){
-            currNode = currNode.getNextNode();
+        int midpoint = length/2;
+        DoublyLinkedNode<T> currNode;
+        if (index < midpoint){
+            currNode = this.firstNode;
+            for (int i = 0; i< index; i++){
+                currNode = currNode.getNextNode();
+            }
+        }
+        else {
+            currNode = this.lastNode;
+            for (int i = 0; i < length-index-1; i++){
+                currNode = currNode.getPreviousNode();
+            }
         }
         return currNode;
     }
