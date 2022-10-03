@@ -3,13 +3,13 @@ package com.starosti.datastructures.linkedlist.doubly;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class DoublyLinkedListTest {
 
     private DoublyLinkedList<Integer> testList;
     private final Integer[] integers = {1, 2, 3, 4, 5, 6};
+    private final Integer[] notIntegers = {7, 8, 9, 10, 11};
 
     @BeforeEach
     void setUp() {
@@ -45,10 +45,28 @@ class DoublyLinkedListTest {
     }
 
     @Test
+    void checkNotFoundFindNodeByData(){
+        DoublyLinkedNode<Integer> currNode = testList.findNodeByIndex(0);
+        for (Integer notInteger : notIntegers) {
+            assertFalse(testList.findNodeByData(notInteger).isPresent());
+            currNode = currNode.getNextNode();
+        }
+    }
+
+    @Test
     void findIndexByData() {
         DoublyLinkedNode<Integer> currNode = testList.findNodeByIndex(0);
         for(int i = 0; i< integers.length; i++){
             assertEquals(i,testList.findIndexByData(integers[i]).orElseThrow());
+            currNode = currNode.getNextNode();
+        }
+    }
+
+    @Test
+    void checkNotFoundFindIndexByData(){
+        DoublyLinkedNode<Integer> currNode = testList.findNodeByIndex(0);
+        for (Integer notInteger : notIntegers) {
+            assertFalse(testList.findIndexByData(notInteger).isPresent());
             currNode = currNode.getNextNode();
         }
     }
@@ -152,6 +170,7 @@ class DoublyLinkedListTest {
         prevNode.setNextNode(newLastNode);
         newLastNode.setPreviousNode(prevNode);
         testList.setLastNode(newLastNode);
+        assertNull(newLastNode.getNextNode());
         assertEquals(newLastNode,testList.getLastNode());
         assertEquals(prevNode,testList.getLastNode().getPreviousNode());
     }
