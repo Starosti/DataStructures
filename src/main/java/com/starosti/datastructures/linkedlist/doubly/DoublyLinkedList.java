@@ -126,13 +126,13 @@ public class DoublyLinkedList<T> implements LinkedList<T, DoublyLinkedNode<T>> {
         if (index >= this.length || index < 0) throw new IndexOutOfBoundsException();
         if (index == 0){
             this.firstNode.getNextNode().setPreviousNode(null);
-            this.firstNode = firstNode.getNextNode();
+            this.firstNode = this.firstNode.getNextNode();
             this.length--;
             return;
         }
         if (index == this.length-1){
             this.lastNode.getPreviousNode().setNextNode(null);
-            this.lastNode = null;
+            this.lastNode = this.lastNode.getPreviousNode();
             this.length--;
             return;
         }
