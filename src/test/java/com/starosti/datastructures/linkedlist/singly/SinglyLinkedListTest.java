@@ -10,6 +10,7 @@ class SinglyLinkedListTest {
 
     private SinglyLinkedList<Integer> testList;
     private final Integer[] integers = {1, 2, 3, 4, 5, 6};
+    private final Integer[] notIntegers = {7, 8, 9, 10, 11};
 
     @BeforeEach
     void setUp() {
@@ -45,10 +46,28 @@ class SinglyLinkedListTest {
     }
 
     @Test
+    void checkNotFoundFindNodeByData(){
+        Node<Integer> currNode = testList.findNodeByIndex(0);
+        for (Integer notInteger : notIntegers) {
+            assertFalse(testList.findNodeByData(notInteger).isPresent());
+            currNode = currNode.getNextNode();
+        }
+    }
+
+    @Test
     void findIndexByData() {
         Node<Integer> currNode = testList.findNodeByIndex(0);
         for(int i = 0; i< integers.length; i++){
             assertEquals(i,testList.findIndexByData(integers[i]).orElseThrow());
+            currNode = currNode.getNextNode();
+        }
+    }
+
+    @Test
+    void checkNotFoundFindIndexByData(){
+        Node<Integer> currNode = testList.findNodeByIndex(0);
+        for (Integer notInteger : notIntegers) {
+            assertFalse(testList.findIndexByData(notInteger).isPresent());
             currNode = currNode.getNextNode();
         }
     }
