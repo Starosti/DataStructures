@@ -56,25 +56,38 @@ public class DoublyLinkedList<T> implements LinkedList<T, DoublyLinkedNode<T>> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Optional<DoublyLinkedNode<T>> findNodeByData(T data){
-        // Duplicated code, but this runs faster so until I find a more elegant solution, I'll keep it
-        DoublyLinkedNode<T> currNode = this.firstNode;
-        for(int i = 0; i< this.length; i++){
-            if (currNode.getData().equals(data)) return Optional.of(currNode);
-            currNode = currNode.getNextNode();
-        }
-        return Optional.empty();
+        return (Optional<DoublyLinkedNode<T>>) findByData(data,this.firstNode.getClass());
     }
 
     @Override
     public Optional<Integer> findIndexByData(T data){
-        // Duplicated code, but this runs faster so until I find a more elegant solution, I'll keep it
+        return findByData(data,Integer.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    private <N> Optional<N> findByData(T data, Class<N> clazz){
+        // not a very elegant solution, but whatever
+        Optional<N> optional = Optional.empty();
         DoublyLinkedNode<T> currNode = this.firstNode;
+        int index = -1;
         for(int i = 0; i< this.length; i++){
-            if (currNode.getData().equals(data)) return Optional.of(i);
+            if (currNode.getData().equals(data)) {
+                index = i;
+                break;
+            }
             currNode = currNode.getNextNode();
         }
-        return Optional.empty();
+
+        if (clazz == Integer.class){
+            if (index != -1) optional = (Optional<N>) Optional.of(index);
+        }
+
+        else {
+            if (currNode != null) optional = (Optional<N>) Optional.of(currNode);
+        }
+        return optional;
     }
 
     @Override
