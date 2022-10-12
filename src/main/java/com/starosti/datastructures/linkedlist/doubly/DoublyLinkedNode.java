@@ -30,6 +30,7 @@ public class DoublyLinkedNode<T> extends Node<T> {
         this.previousNode = previousNode;
     }
 
+    @Override
     public DoublyLinkedNode<T> getNextNode() {
         return nextNode;
     }

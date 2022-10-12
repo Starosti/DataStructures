@@ -1,46 +1,28 @@
 package com.starosti.datastructures;
 
-import com.starosti.datastructures.linkedlist.LinkedListUtils;
-import com.starosti.datastructures.linkedlist.doubly.DoublyLinkedList;
+import com.starosti.datastructures.stack.Stack;
+import com.starosti.datastructures.stack.StackUtils;
 
 public class PlaygroundClass {
     public static void main(String[] args) {
-        DoublyLinkedList<Integer> list = new DoublyLinkedList<>(1, 2, 4, 6);
 
-        System.out.println(LinkedListUtils.toString(list));
-        // [1, 2, 4, 6]
+        Stack<Integer> stackIterate = new Stack<>(1,2,3,4,5);
+        System.out.println(StackUtils.toString(stackIterate));
+        for(int i : stackIterate){
+            System.out.println(i);
+            System.out.println(StackUtils.toString(stackIterate));
+        }
 
-        list.insertDataInIndex(-1,0);
-        System.out.println(LinkedListUtils.toString(list));
-        // [-1, 1, 2, 4, 6]
+        Stack<Integer> stack = new Stack<>(1,2,3,4,5);
+        System.out.println(StackUtils.toString(stack));
 
-        list.insertDataInIndex(7,5);
-        System.out.println(LinkedListUtils.toString(list));
-        // [-1, 1, 2, 4, 6, 7]
 
-        list.removeNodeInIndex(5);
-        System.out.println(LinkedListUtils.toString(list));
-        // [-1, 1, 2, 4, 6]
+        stack.pop();
+        System.out.println(StackUtils.toString(stack));
 
-        list.removeNodeInIndex(3);
-        System.out.println(LinkedListUtils.toString(list));
-        // [-1, 1, 2, 6]
+        System.out.println(stack.peek());
 
-        list.removeNodeInIndex(0);
-        System.out.println(LinkedListUtils.toString(list));
-        // [1, 2, 6]
-
-        list.replaceDataInIndex(3,0);
-        System.out.println(LinkedListUtils.toString(list));
-        // [3, 2, 6]
-
-        list.replaceDataInIndex(4,1);
-        System.out.println(LinkedListUtils.toString(list));
-        // [3, 4, 6]
-
-        list.replaceDataInIndex(7,2);
-        System.out.println(LinkedListUtils.toString(list));
-        // [3, 4, 7]
-
+        stack.push(7);
+        System.out.println(StackUtils.toString(stack));
     }
 }

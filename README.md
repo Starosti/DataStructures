@@ -5,7 +5,7 @@ Currently implemented:
 | Data Structure | Status |
 | --- | --- |
 | Linked List | 🟩 |
-| Stack       | 🟥 |
+| Stack       | 🟨 |
 | Queue       | 🟥 |
 
 🟩 Done - 🟨 In Progress - 🟥 Didn't Start Yet
