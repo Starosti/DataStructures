@@ -7,7 +7,6 @@ import java.util.Iterator;
 
 public class Stack<T> implements Iterable<T> {
 
-    // TODO: tests
 
     /** Stack is essentially a singly linked list which only enables operations
      *  with the head. So; we can just use a singly linked list under the hood
@@ -36,6 +35,10 @@ public class Stack<T> implements Iterable<T> {
 
     public T peek(){
         return stackList.getHead().getData();
+    }
+
+    public int getLength(){
+        return stackList.getLength();
     }
 
     public SinglyLinkedList<T> asList(){
